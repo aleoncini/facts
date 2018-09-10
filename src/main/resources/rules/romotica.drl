@@ -1,0 +1,13 @@
+package rules;
+
+dialect  "mvel"
+
+import org.romotica.facts.model.Event
+
+rule "ph_fisiologico"
+    when
+        $event : Event( value != 5.5 )
+    then
+        System.out.println("Porca Matregna! Il PH dell'acqua della piscina e SBALLATO!");
+        channels["null_channel"].send($event);
+end
